@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class OpenSettings : MonoBehaviour
 {
     public GameObject panel;
@@ -21,5 +21,10 @@ public class OpenSettings : MonoBehaviour
     public void Closeset()
     {
         panel.SetActive(false);
+    }
+
+    public void escape()
+    {
+        SceneManager.LoadScene("title");
     }
 }
