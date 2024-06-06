@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class setGame : MonoBehaviour
     List<Resolution> resolutions = new List<Resolution>();
     public Dropdown resolutionsDropdown;
     public int resolutionNum;
+    public int lastwidth = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,6 @@ public class setGame : MonoBehaviour
                 resolutions.Add(Screen.resolutions[i]);
             }
         }
-
-        resolutions.AddRange(Screen.resolutions);
         resolutionsDropdown.options.Clear();
 
         int optionNum = 0;
@@ -34,15 +34,20 @@ public class setGame : MonoBehaviour
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
             int height1 = item.width * 9/16;
-            option.text = item.width + " × " + height1 + " " + item.refreshRateRatio + "p";
-            resolutionsDropdown.options.Add(option);
-
-            if(item.width == Screen.width && item.height == Screen.height)
+            if (item.width != lastwidth)
             {
-                resolutionsDropdown.value = optionNum;
+                lastwidth = item.width;
+                option.text = item.width + " × " + height1 + " " + item.refreshRateRatio + "p";
+                resolutionsDropdown.options.Add(option);
+                if(item.width == Screen.width && item.height == Screen.height)
+                {
+                    resolutionsDropdown.value = optionNum;
+                }
+                optionNum ++;
             }
-            optionNum ++;
+            
         }
+
         resolutionsDropdown.RefreshShownValue();
 
         fullscreenc.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
