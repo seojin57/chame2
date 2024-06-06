@@ -9,4 +9,14 @@ public class Intogame : MonoBehaviour
     {
         SceneManager.LoadScene("Ingame");
     }
+
+    public void bye()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
+    }
+    
 }
