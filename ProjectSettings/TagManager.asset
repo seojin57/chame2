@@ -6,6 +6,7 @@ TagManager:
   tags:
   - 44
   - 10
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

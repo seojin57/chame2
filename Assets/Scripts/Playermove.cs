@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class Playermove : MonoBehaviour
 {
-    public float moveSpeed;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+    public float speed = 3;
+    
+    private void Update() {
         Move();
     }
-
-    void Move()
+    
+    private void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        Vector3 moveVelocity = new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
+        Vector3 moveVelocity = new Vector3(x, y, 0) * speed * Time.deltaTime;
         this.transform.position += moveVelocity;
     }
-
 }
