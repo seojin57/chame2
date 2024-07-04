@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class AsMove : MonoBehaviour
 {
-    private SpriteRenderer playerSpriteRenderer;
     public float moveSpeed;
     // Start is called before the first frame update
     void Start() 
     {
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+
     }
     void Update()
     {
@@ -23,11 +22,11 @@ public class AsMove : MonoBehaviour
         Vector3 moveVelocity = new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
         if (x == 1)
         {
-            playerSpriteRenderer.flipX = false;
+            transform.localScale = new Vector3 (2, 2, 2);
         }
         else if (x == -1)
         {
-            playerSpriteRenderer.flipX = true;
+            transform.localScale = new Vector3 (-2, 2, 2);
         }
         this.transform.position += moveVelocity;
     }

@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class bsSwoird : MonoBehaviour
 {
-    private SpriteRenderer playerSpriteRenderer;
-
+    public GameObject attack1;
     void Start()
     {
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        if (x == 1)
+        if (Input.GetButtonDown("Fire1"))
         {
-            playerSpriteRenderer.flipX = false;
+            Invoke("A1", 0.5f);
         }
-        else if (x == -1)
-        {
-            playerSpriteRenderer.flipX = true;
-        }
+    }
+
+    void A1()
+    {
+        attack1.SetActive(true);
     }
 }
