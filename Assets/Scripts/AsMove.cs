@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AsMove : MonoBehaviour
 {
     public float moveSpeed;
-    // Start is called before the first frame update
+    public static float stamina = 3f;
+    public Image stambar;
+    Rigidbody2D rb;
+    public float forceAmount;
     void Start() 
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
-    {
-        Move();
-    }
 
-    void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+
+        Move(x, y);
+        
+        if (Input.GetButtonDown("Jump")){
+            Dash(x, y);
+        }
+
+        stambar.GetComponent<Image>().fillAmount = stamina / 3;
+    }
+
+    void Move(float x, float y)
+    {
         Vector3 moveVelocity = new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
         if (x == 1)
         {
@@ -29,5 +42,44 @@ public class AsMove : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         this.transform.position += moveVelocity;
+    }
+
+    void Dash(float x, float y)
+    {
+        if (stamina >= 1)
+        {
+            if (x == 1 && y == 0){
+                rb.AddForce(Vector2.right * forceAmount, ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == 1 && y == 1){
+                rb.AddForce(new Vector2(forceAmount/2, forceAmount/2), ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == 1 && y == -1){
+                rb.AddForce(new Vector2(forceAmount/2, -1 * forceAmount/2), ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == 0 && y == 1){
+                rb.AddForce(Vector2.up * forceAmount, ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == 0 && y == -1){
+                rb.AddForce(Vector2.down * forceAmount, ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == -1 && y == 0){
+                rb.AddForce(Vector2.left * forceAmount, ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == -1 && y == 1){
+                rb.AddForce(new Vector2(-forceAmount/2, forceAmount/2), ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+            else if (x == -1 && y == -1){
+                rb.AddForce(new Vector2(-forceAmount/2, -forceAmount/2), ForceMode2D.Impulse);
+                stamina -= 1;
+                }
+        }
     }
 }
