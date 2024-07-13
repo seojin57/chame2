@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BsMove : MonoBehaviour
+public class BsMove1 : MonoBehaviour
 {
     public float moveSpeed;
     public static bool stunned = false;
@@ -14,8 +14,8 @@ public class BsMove : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal2");
-        float y = Input.GetAxisRaw("Vertical2");
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
         Vector3 moveVelocity = new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
         if (x == 1)
         {

@@ -102,6 +102,7 @@ public class CsMove1 : MonoBehaviour
     {
         if (other.tag == "bStun")
         {
+            HPc.HP -= 700;
             stunned = true;
             Invoke("Stun5s", 4f);
         }

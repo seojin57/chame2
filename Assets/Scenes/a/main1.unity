@@ -778,6 +778,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1546649508}
+    - target: {fileID: 7647986179710709988, guid: 393461acb2457b14b96081f984f94655, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

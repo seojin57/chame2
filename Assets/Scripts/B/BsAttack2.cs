@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BsAttack1 : MonoBehaviour
+public class BsAttack2 : MonoBehaviour
 {
     public Transform target;
     public GameObject sword1;
@@ -54,21 +54,21 @@ public class BsAttack1 : MonoBehaviour
             aReroad = 0.6f;
         }
 
-        if (Input.GetButtonDown("Fire12") && !attacking && !specialAttack && BsMove.stunned == false)
+        if (Input.GetButtonDown("Fire1") && !attacking && !specialAttack && BsMove1.stunned == false)
         {
             attacking = true;
             Invoke("Swing", aSpeed);
             Invoke("Cooldown", aReroad);
         }
 
-        if (Input.GetButtonDown("Fire12") && !attacking && specialAttack && BsMove.stunned == false)
+        if (Input.GetButtonDown("Fire1") && !attacking && specialAttack && BsMove1.stunned == false)
         {
             attacking = true;
             Invoke("Swing1", aSpeed);
             Invoke("Cooldown", aReroad);
         }
 
-        if (Input.GetButtonDown("Fire22") && OnUlt && BsMove.stunned == false)
+        if (Input.GetButtonDown("Fire2") && OnUlt && BsMove1.stunned == false)
         {
             OnUlt = false;
             GetComponent<BoxCollider2D>().enabled = false;

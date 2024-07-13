@@ -4,7 +4,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AsMove : MonoBehaviour
+public class AsMove1 : MonoBehaviour
 {
     public float moveSpeed;
     public static float stamina = 3f;
@@ -20,13 +20,13 @@ public class AsMove : MonoBehaviour
     void Update()
 
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxisRaw("Horizontal2");
+        float y = Input.GetAxisRaw("Vertical2");
         if (stunned == false){
             Move(x, y);
         }
         
-        if (Input.GetButtonDown("Jump")){
+        if (Input.GetButtonDown("Jump2")){
             Dash(x, y);
         }
 
