@@ -35,6 +35,15 @@ public class DsMove : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         this.transform.position += moveVelocity;
+
+        if (x == 0 && y == 0)
+        {
+            idle = true;
+        }
+        else
+        {
+            idle = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

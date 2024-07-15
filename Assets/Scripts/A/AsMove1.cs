@@ -13,6 +13,8 @@ public class AsMove1 : MonoBehaviour
     public float forceAmount;
     public Transform face;
     public static bool stunned = false;
+    public bool slow = false;
+    public bool dstunned = false;
     void Start() 
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +22,15 @@ public class AsMove1 : MonoBehaviour
     void Update()
 
     {
+        if (slow)
+        {
+            moveSpeed = 1.5f;
+        }
+        if (!slow)
+        {
+            moveSpeed = 4f;
+        }
+
         float x = Input.GetAxisRaw("Horizontal2");
         float y = Input.GetAxisRaw("Vertical2");
         if (stunned == false){
@@ -101,10 +112,33 @@ public class AsMove1 : MonoBehaviour
             stunned = true;
             Invoke("Stun5s", 4f);
         }
+        if (other.tag == "dd100")
+        {
+            slow = true;
+            Invoke("Slow5s", 4f);
+        }
+        if (other.tag == "d100" && !dstunned)
+        {
+            HPa.HP -= 100;
+            stunned = true;
+            dstunned = true;
+            Invoke("Stun5s", 4f);
+            Invoke("dstunEnd", 40f);
+        }
     }
 
     void Stun5s()
     {
         stunned = false;
+    }
+
+    void Slow5s()
+    {
+        slow = false;
+    }
+
+    void dstunEnd()
+    {
+        dstunned = false;
     }
 }

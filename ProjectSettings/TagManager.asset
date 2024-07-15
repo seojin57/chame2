@@ -10,6 +10,10 @@ TagManager:
   - b1300
   - c500
   - c1000
+  - d400
+  - d100
+  - dd400
+  - dd100
   layers:
   - Default
   - TransparentFX

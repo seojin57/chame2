@@ -16,8 +16,14 @@ public class Cattack : MonoBehaviour
     public GameObject invbar;
     BoxCollider2D coll;
     SpriteRenderer spriteRenderer;
+    public GameObject wp;
+    public Animator animator;
+    public GameObject wp1;
+    public Animator animator1;
     void Start()
     {
+        animator = wp.GetComponent<Animator>();
+        animator1 = wp1.GetComponent<Animator>();
         StartCoroutine(hideCool());
         coll = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -74,24 +80,28 @@ public class Cattack : MonoBehaviour
 
     void S1()
     {
+        animator.SetTrigger("attack");
         slash1.SetActive(true);
         Invoke("S1End", 0.3f);
     }
 
     void S1End()
     {
+        animator1.ResetTrigger("attack");
         slash1.SetActive(false);
         onAttacking = false;
     }
 
     void S2()
     {
+        animator1.SetTrigger("attack");
         slash2.SetActive(true);
         Invoke("S2End", 0.3f);
     }
 
     void S2End()
     {
+        animator1.ResetTrigger("attack");
         slash2.SetActive(false);
         Invoke("Cooldown", 3.4f);
     }

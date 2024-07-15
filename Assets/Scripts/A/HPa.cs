@@ -8,10 +8,14 @@ public class HPa : MonoBehaviour
 {
     public GameObject bar;
     public TextMeshProUGUI text;
-    public static float HP = 3500;
+    public static float HP = 3000;
+    void Start()
+    {
+        HP = 3000;
+    }
     void Update()
     {
-        bar.GetComponent<Image>().fillAmount = HP/3500;
+        bar.GetComponent<Image>().fillAmount = HP/3000;
 
         text.text = HP.ToString();
     }
@@ -34,6 +38,14 @@ public class HPa : MonoBehaviour
         if (other.tag == "c1000")
         {
             HP -= 1000;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "d400")
+        {
+            HP -= 400;
         }
     }
 }

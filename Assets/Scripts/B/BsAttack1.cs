@@ -16,6 +16,12 @@ public class BsAttack1 : MonoBehaviour
     public bool zichim1 = false;
     public float aSpeed = 1.2f;
     public float aReroad = 3f;
+    public GameObject wp;
+    public Animator animator;
+
+    void Awake() {
+        animator = wp.GetComponent<Animator>();
+    }
     void Start()
     {
         sword1.SetActive(false);
@@ -80,12 +86,14 @@ public class BsAttack1 : MonoBehaviour
 
     void Swing()
     {
+        animator.SetTrigger("attack");
         sword1.SetActive(true);
         Invoke("SwingEnd", 0.3f);
     }
 
     void Swing1()
     {
+        animator.SetTrigger("attack");
         sword2.SetActive(true);
         Invoke("SwingEnd2", 0.3f);
     }
@@ -93,11 +101,13 @@ public class BsAttack1 : MonoBehaviour
     void SwingEnd()
     {
         sword1.SetActive(false);
+        animator.ResetTrigger("attack");
     }
 
     void SwingEnd2()
     {
         sword2.SetActive(false);
+        animator.ResetTrigger("attack");
     }
 
     void Cooldown()
@@ -110,7 +120,7 @@ public class BsAttack1 : MonoBehaviour
         Vector3 where = target.position;
         while (true) 
         {
-        this.transform.position = Vector3.Lerp(transform.position, where, 0.01f);
+        this.transform.position = Vector3.Lerp(transform.position, where, 0.05f);
         
         yield return null;
         }
